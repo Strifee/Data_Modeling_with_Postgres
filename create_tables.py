@@ -1,12 +1,12 @@
 import psycopg2
+from psycopg2.extensions import connection, cursor
 from sql_queries import create_table_queries, drop_table_queries
 
-def connection(db):
-    "connect to database and return connection and cursor"
+def connection(db: str=None) -> (connection, cursor):
     if not db:
-        db = "sparkifydb"
+        db = "startupdb"
     conn = psycopg2.connect(
-    database="template1 ", user='mehdi', password='mehdi', host='127.0.0.1', port= '5432'
+    database=db, user='postgres', password='12345', host='127.0.0.1', port= '5432'
     )
     conn.autocommit = True
     cursor = conn.cursor()
@@ -14,11 +14,11 @@ def connection(db):
     return cursor,conn
 
 def create_database():
-    conn=connection("template1")
+    cursor, conn=connection("template1")
     
-    # Create sparkifydb 
-    cursor.execute(''' DROP DATABASE IF EXISTS sparkifydb''')
-    cursor.execute(" CREATE DATABASE sparkifydb ENCODING 'utf8' TEMPLATE template0; ")
+    # Create startupdb 
+    cursor.execute(''' DROP DATABASE IF EXISTS startupdb''')
+    cursor.execute("CREATE DATABASE startupdb ENCODING 'utf8'TEMPLATE template0")
     # Close connection
     cursor.close
     conn.close
@@ -34,7 +34,8 @@ def drop_tables(cursor, conn):
         conn.commit()
 
 if __name__ == "__main__":
-    cursor, conn = create_database()
+    create_database()
+    cursor, conn = connection()
     drop_tables(cursor, conn)
     create_tables(cursor, conn)
 
