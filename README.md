@@ -1,5 +1,5 @@
 # Data_Modeling_with_Postgres
-( a bug is in the last at _etl.ipynb_ ( the songplays table is not set up yet ))
+( a bug is in the last at _etl.ipynb_ ( the songplays table is not set up with data yet ))
 ## Introduction
 A startup wants to analyze the data they've been collecting on songs and user activity on their new music streaming app. The analytics team is particularly interested in understanding what songs users are listening to. Currently, they don't have an easy way to query their data, which resides in a directory of __JSON logs__ on user activity on the app, as well as a directory with __JSON metadata__ on the songs in their app. 
 
